@@ -1,0 +1,3 @@
+? (192.168.5.33) at 78:24:af:40:f2:00 on vmx0 expires in 197 seconds [ethernet]
+? (192.168.5.1) at 00:00:5e:00:01:01 on vmx0 expires in 291 seconds [ethernet]
+? (192.168.4.245) at 00:0c:29:81:05:25 on vmx0 permanent [ethernet]

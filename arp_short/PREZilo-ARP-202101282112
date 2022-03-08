@@ -1,0 +1,5 @@
+? (10.250.22.26) at a0:36:9f:14:f1:bd on vlan220 permanent [vlan]
+? (10.250.20.26) at a0:36:9f:14:f1:bd on vlan200 permanent [vlan]
+? (10.250.21.26) at a0:36:9f:14:f1:bd on vlan210 permanent [vlan]
+? (91.235.245.129) at f8:f2:1e:b9:2a:71 on ifaceOUT1 expires in 281 seconds [ethernet]
+? (91.235.245.130) at 2c:60:0c:a5:b3:54 on ifaceOUT1 permanent [ethernet]
