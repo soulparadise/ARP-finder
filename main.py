@@ -34,10 +34,45 @@ def read_config_json():
 
 def dumping(files_list, config_file):
     config_file['dumping'] = True  # dumping option ON
-    last_file_name = files_list[-1]
-    config_file['last_file'] = last_file_name
     write_to_config_json(config_file)
-    print(config_file)
+    last_file_name = files_list[-1]
+    config_file['last_file'] = last_file_name   # запись в конфиг название последнего файла в дирректории
+    delta_time_format = datetime.datetime.strptime(last_file_name[-12:-4], '%Y%m%d') - datetime.timedelta(days=1095)
+    delta_for_dumping = int(delta_time_format.strftime('%Y%m%d'))
+    files_list_for_dump_new = []
+    files_list_for_dump_new_csv = []
+    files_list_cuted = []
+    try:
+        with open('files_list_dump_old', 'rb') as f_obj:  # открывает файл со списком файлов которые были ранее упакованы
+            files_list_dump_old = pickle.load(f_obj)
+    except:
+        files_list_dump_old = []
+
+    for element in files_list:  # делит на два списка: то что отправится в дамп, и то что останется для поиска
+        if int(element[-12:-4]) >= delta_for_dumping:
+            files_list_cuted.append(element)
+        else:
+            files_list_for_dump_new.append(element)
+
+    with open('files_list_dump_old', 'wb') as f_obj:  # записывает файл со списком того что в дампе
+        pickle.dump(files_list_for_dump_new, f_obj)
+
+    for element in files_list_for_dump_new.copy():  # удаляет из списка файлов для дампа старые файл.
+        if element in files_list_dump_old:
+            files_list_for_dump_new.remove(element)
+
+    for element in files_list_for_dump_new:  # создает список для дампа .csv
+        files_list_for_dump_new_csv.append(element + '.csv')
+
+    files_dict_for_dump = dict(zip(files_list_for_dump_new, files_list_for_dump_new_csv))
+
+    print(files_dict_for_dump)
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
