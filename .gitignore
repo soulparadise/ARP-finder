@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/arp_short/
+/arp/
+/dumped_files_list
+/dumped_results.csv
+/files_list_for_search
